@@ -19,8 +19,10 @@ class HttpTransportWithKeepAlive(HttpAuthenticated, object):
         return HttpTransport.open(self, request)
 
     def send(self, request):
+        headers_as_strings = {key: value.decode("utf-8") for (key, value) in request.headers.items()}
+
         headers, message = self.http.request(request.url, "POST",
                                              body=request.message,
-                                             headers=request.headers)
+                                             headers=headers_as_strings)
         response = Reply(200, headers, message)
         return response
