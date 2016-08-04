@@ -29,6 +29,6 @@ setup(
 
     license=zuora.__license__,
     zip_safe=False,
-    install_requires=['suds>=0.4',
+    install_requires=['suds-jurko==0.6',
                       'httplib2>=0.8']
 )
